@@ -29,7 +29,7 @@ duration numeric not null);
 create table if not exists collections (
 id serial primary key,
 name varchar(30) unique not null,
-year_collection varchar(4) not null,
+year_collection integer not null,
 track_id integer not null references tracks(id),
 albom_id integer not null references alboms(id));
 
@@ -64,7 +64,7 @@ insert into alboms(name,year_albom) values ('Albom1',1991);
 insert into alboms(name,year_albom) values ('Albom2',1991);
 insert into alboms(name,year_albom) values ('Albom3',1995);
 insert into alboms(name,year_albom) values ('Albom4',1999);
-insert into alboms(name,year_albom) values ('Albom5',1999);
+insert into alboms(name,year_albom) values ('Albom5',2018);
 insert into alboms(name,year_albom) values ('Albom6',2010);
 insert into alboms(name,year_albom) values ('Albom7',2015);
 insert into alboms(name,year_albom) values ('Albom8',2018);
@@ -100,7 +100,7 @@ insert into tracks(id,name,duration) values (15,'Track10',5.40);
 insert into collections (name, year_collection, track_id, albom_id) 
 values ('Collection1',2001,5,8);
 insert into collections (name, year_collection, track_id, albom_id) 
-values ('Collection2',1993,9,1);
+values ('Collection2',2019,9,1);
 insert into collections (name, year_collection, track_id, albom_id) 
 values ('Collection3',1993,2,2);
 insert into collections (name, year_collection, track_id, albom_id) 
@@ -115,5 +115,12 @@ insert into collections (name, year_collection, track_id, albom_id)
 values ('Collection8',2013,7,6);
 insert into collections (name, year_collection, track_id, albom_id) 
 values ('Collection9',2018,8,1);
+
+select name, year_albom from alboms where year_albom = 2018;
+select name, duration from tracks order by duration desc limit 1;
+select name from tracks where duration >=3.5;
+select name from collections where year_collection between 2018 and 2020;
+select name from artists where name not like '% %';
+select name from tracks where name ilike '%my%';
 
 
