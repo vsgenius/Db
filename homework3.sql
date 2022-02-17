@@ -21,14 +21,15 @@ id serial primary key,
 artist_id integer references artists(id),
 albom_id integer references alboms(id));
 
-create table if not exists tracks (
-id integer primary key,
-name varchar(40) not null,
-duration numeric not null);
-
 create table if not exists collections (
 id serial primary key,
 name varchar(30) unique not null,
 year_collection integer not null,
-track_id integer not null references tracks(id),
-albom_id integer not null references alboms(id));
+
+
+create table if not exists tracks (
+id integer primary key,
+name varchar(40) not null,
+duration numeric not null),
+collection_id integer not null references collections(id),
+albom_id integer not null references alboms(id);
