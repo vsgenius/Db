@@ -24,12 +24,15 @@ albom_id integer references alboms(id));
 create table if not exists collections (
 id serial primary key,
 name varchar(30) unique not null,
-year_collection integer not null,
-
+year_collection integer not NULL);
 
 create table if not exists tracks (
 id integer primary key,
 name varchar(40) not null,
-duration numeric not null),
-collection_id integer not null references collections(id),
-albom_id integer not null references alboms(id);
+duration numeric not null,
+albom_id integer not null references alboms(id));
+
+create table if not exists collection_track(
+id serial primary key,
+collection_id integer references collections(id),
+track_id integer references tracks(id));
